@@ -331,7 +331,7 @@
     .run-headline {
       font-family: Arial, sans-serif;
       font-size: clamp(22px, 3vw, 30px);
-      font-weight: 900; color: #062035;
+      font-weight: 900; color: #0A8FA8;
       line-height: 1.2; margin-bottom: 8px;
     }
 
@@ -521,18 +521,21 @@
     /* ── CTA FINAL ───────────────────────────── */
     .cta-final {
       padding: 110px 22px;
-      background:
-        radial-gradient(ellipse at 50% 100%, rgba(10,143,168,0.10) 0%, transparent 60%),
-        radial-gradient(ellipse at 20% 0%,   rgba(6,80,120,0.12) 0%, transparent 55%),
-        var(--dark);
+      background: linear-gradient(180deg,
+        #B8DCF0 0%,
+        #8CC8E4 25%,
+        #5AAED8 55%,
+        #3A98C8 80%,
+        #2080A8 100%
+      );
       text-align: center;
     }
 
-    .cta-final h2 { font-size: clamp(32px, 5vw, 52px); margin-bottom: 16px; }
+    .cta-final h2 { font-size: clamp(32px, 5vw, 52px); margin-bottom: 16px; color: #062035; }
 
     .cta-final .cta-sub {
       font-family: Arial, sans-serif; font-size: 17px;
-      color: #2A5065; max-width: 500px;
+      color: #083848; max-width: 500px;
       margin: 0 auto 52px; line-height: 1.6;
     }
 
