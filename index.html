@@ -11,14 +11,14 @@
       --teal:       #0A8FA8;
       --teal-light: #18B8D4;
       --teal-dim:   rgba(10,143,168,0.22);
-      --navy-deep:  #061828;
-      --navy-card:  #0B2437;
-      --navy-mid:   #091D2E;
-      --dark:       #040F1C;
+      --navy-deep:  #0D3348;
+      --navy-card:  #143D58;
+      --navy-mid:   #0F3045;
+      --dark:       #0B2A3E;
       --white:      #FFFFFF;
-      --off-white:  #E2EEF4;
-      --muted:      #7898A8;
-      --border:     rgba(10,143,168,0.28);
+      --off-white:  #D8EDF5;
+      --muted:      #88B0C2;
+      --border:     rgba(10,143,168,0.30);
       --sand:       #C8A96E;
       --sand-light: #E0C88A;
     }
@@ -78,67 +78,76 @@
     /* ── HERO ────────────────────────────────── */
     .hero {
       min-height: 90vh;
-      background: linear-gradient(160deg, #061828 0%, #0A2235 45%, #040F1C 100%);
+      background: linear-gradient(160deg,
+        #C8E8F4 0%,
+        #90CAE0 25%,
+        #4AAEC8 55%,
+        #1A7FA0 80%,
+        #0D6080 100%
+      );
       display: flex; align-items: center;
       padding: 100px 22px 80px;
       position: relative; overflow: hidden;
     }
 
-    .hero-bg {
-      position: absolute; inset: 0; z-index: 0;
-      background-image: url('hero-cover.jpeg');
-      background-size: cover;
-      background-position: center 30%;
-      opacity: 0.55;
+    /* Sandy wave shimmer at bottom */
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+      background: linear-gradient(to top, rgba(200,169,110,0.18) 0%, transparent 100%);
+      pointer-events: none; z-index: 1;
     }
 
-    .hero-bg-overlay {
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(
-        to right,
-        rgba(4,15,28,0.88) 0%,
-        rgba(4,15,28,0.72) 40%,
-        rgba(4,15,28,0.30) 70%,
-        rgba(4,15,28,0.10) 100%
+    /* Portrait image — right side */
+    .hero-portrait {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 48%;
+      z-index: 2;
+      overflow: hidden;
+    }
+    .hero-portrait img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    /* Fade left edge of portrait into hero bg */
+    .hero-portrait::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 3;
+      background: linear-gradient(to right,
+        #7BBDD8 0%,
+        rgba(74,174,200,0.6) 25%,
+        rgba(74,174,200,0) 55%
       );
     }
 
-    /* subtle wave pattern overlay */
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(10,143,168,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(10,143,168,0.04) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-    }
+    .hero-inner { position: relative; z-index: 4; max-width: 560px; }
 
-    .hero-inner { position: relative; z-index: 2; max-width: 820px; margin: 0 auto; }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
       font-family: Arial, sans-serif; font-size: 12px;
       letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--teal); margin-bottom: 32px;
+      color: #0A4A62; margin-bottom: 32px;
     }
 
     .hero h1 {
       font-size: clamp(38px, 6.5vw, 70px);
       font-weight: normal; line-height: 1.12;
-      color: var(--white); margin-bottom: 20px;
+      color: #062035; margin-bottom: 20px;
     }
-    .hero h1 em { font-style: italic; color: var(--teal-light); }
+    .hero h1 em { font-style: italic; color: #0A6880; }
 
     .hero-verse {
       font-family: Georgia, serif; font-style: italic;
       font-size: clamp(14px, 1.8vw, 16px);
-      color: var(--sand); margin-bottom: 28px;
+      color: #7A5020; margin-bottom: 28px;
       letter-spacing: 0.02em;
     }
 
     .hero-body {
       font-family: Arial, sans-serif; font-size: clamp(16px, 2.2vw, 19px);
-      color: var(--muted); max-width: 560px;
+      color: #1A3D52; max-width: 500px;
       line-height: 1.65; margin-bottom: 48px;
     }
 
@@ -146,27 +155,27 @@
 
     .btn-primary {
       display: inline-flex; align-items: center; gap: 8px;
-      background: var(--teal); color: var(--white);
+      background: #0A6880; color: #FFFFFF;
       padding: 16px 36px; border-radius: 4px;
       font-family: Arial, sans-serif; font-size: 14px;
       font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
       text-decoration: none; transition: background 0.2s, transform 0.1s;
     }
-    .btn-primary:hover { background: var(--teal-light); transform: translateY(-1px); }
+    .btn-primary:hover { background: var(--teal); transform: translateY(-1px); }
 
     .btn-ghost {
       display: inline-flex; align-items: center; gap: 8px;
-      background: transparent; color: var(--teal);
-      padding: 16px 30px; border-radius: 4px; border: 1px solid var(--border);
+      background: rgba(255,255,255,0.25); color: #062035;
+      padding: 16px 30px; border-radius: 4px; border: 1.5px solid rgba(6,32,53,0.35);
       font-family: Arial, sans-serif; font-size: 14px;
       font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-      text-decoration: none; transition: border-color 0.2s, color 0.2s;
+      text-decoration: none; transition: border-color 0.2s, background 0.2s;
     }
-    .btn-ghost:hover { border-color: var(--teal); color: var(--teal-light); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.40); border-color: #062035; }
 
     .hero-note {
       margin-top: 24px;
-      font-family: Arial, sans-serif; font-size: 13px; color: var(--muted);
+      font-family: Arial, sans-serif; font-size: 13px; color: #2A5068;
     }
 
     /* ── DIVIDER ─────────────────────────────── */
@@ -573,6 +582,8 @@
       .nav-inner { flex-direction: row; }
       .nav-brand { display: none; }
       .hero { min-height: auto; padding: 80px 18px 60px; }
+      .hero-portrait { width: 100%; opacity: 0.18; }
+      .hero-inner { max-width: 100%; }
       .hero-actions { flex-direction: column; align-items: flex-start; }
       .btn-primary, .btn-ghost, .btn-wa, .btn-email { width: 100%; justify-content: center; }
       .cta-buttons { flex-direction: column; align-items: center; }
@@ -595,8 +606,9 @@
 
 <!-- ───────── HERO ───────── -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-bg-overlay"></div>
+  <div class="hero-portrait">
+    <img src="hero-cover.jpeg" alt="Jacqueline Bekker" />
+  </div>
   <div class="hero-inner">
     <p class="hero-eyebrow">Start By Faith With LifeWave &nbsp;&mdash;&nbsp; Health, Wealth &amp; Freedom</p>
 
